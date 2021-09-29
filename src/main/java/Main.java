@@ -6,24 +6,24 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-class Model{
-    public List<Integer> getRange() {
-        return range;
-    }
-
-    public void setRange(List<Integer> range) {
-        this.range = range;
-    }
-
-    private List<Integer> range = new ArrayList<>();
-
-    public Model(List<Integer> range) {
-        this.range = range;
-    }
-}
-class View {
-
-}
+//class Model{
+//    public List<Integer> getRange() {
+//        return range;
+//    }
+//
+//    public void setRange(List<Integer> range) {
+//        this.range = range;
+//    }
+//
+//    private List<Integer> range = new ArrayList<>();
+//
+//    public Model(List<Integer> range) {
+//        this.range = range;
+//    }
+//}
+//class View {
+//
+//}
 class Controller{
     public int readNumberFromKeyboard() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -71,7 +71,7 @@ class Controller{
         }
 
         for (int i = 0; i < n; ++i) {
-            System.out.println(f[i]);
+//            System.out.println(f[i]);
 
             if(f[i] % 2 == 0)
             {
@@ -95,17 +95,18 @@ class Controller{
 }
 public class Main {
     public static void main (String args[]) throws IOException {
+        System.out.println("Write first limit");
         int nfirstNum = new Controller().readNumberFromKeyboard();
+        System.out.println("Write second limit");
         int nlastNum = new Controller().readNumberFromKeyboard();
         List<Integer> list = new Controller().creatingList(nfirstNum, nlastNum);
+        System.out.println("List elements:"+list);
         List<Integer> listOfSum =new Controller().listOfTheSums(list);
+        System.out.println("Sum:"+listOfSum);
+        System.out.println("Write size of the set:");
         int setSize = new Controller().readNumberFromKeyboard();
         List<Double> percents = new Controller().buidingFibonachiNumbersAndCalculatingPercentage(setSize);
-        System.out.println(percents);
-
-
-
-
+        System.out.println("Percents: "+percents);
     }
 }
 
