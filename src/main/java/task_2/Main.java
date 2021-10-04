@@ -8,15 +8,18 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Scanner scannerForAddingBMW = new Scanner(System.in);
+        Scanner scannerForAddingMercedes = new Scanner(System.in);
 
         int choice;
         while (true) {
             System.out.println("Main Menu\n");
-            System.out.print("1.) Add car. \n");
-            System.out.print("2.) Remove car.\n");
-            System.out.print("3.) Show cars.\n");
-            System.out.print("4.) Sort cars.\n");
-            System.out.print("5.) Exit\n");
+            System.out.print("1.) Add BMW car. \n");
+            System.out.print("2.) Add Mercedes car. \n");
+            System.out.print("3.) Remove car.\n");
+            System.out.print("4.) Show cars.\n");
+            System.out.print("5.) Sort cars by brand.\n");
+            System.out.print("6.) Exit\n");
             System.out.print("\nEnter Your Menu Choice: ");
 
             choice = input.nextInt();
@@ -24,26 +27,40 @@ public class Main {
             switch (choice) {
 
                 case 1:
-
                     System.out.println("Please write type of the car:");
-                    String typeName = input.nextLine();
+                    String typeNameBMW = scannerForAddingBMW.nextLine();
 
                     System.out.println("Please write model of the car:");
-                    String modelName = input.nextLine();
-
-                    System.out.println("Please write brand of the car:");
-                    String brandName = input.nextLine();;
+                    String modelNameBMW = scannerForAddingBMW.nextLine();
 
                     System.out.println("Please write color of the car:");
-                    String colorName = input.nextLine();
+                    String colorNameBMW = scannerForAddingBMW.nextLine();
 
                     System.out.println("Please write speed of the car:");
-                    int speed = input.nextInt();
+                    int speedBMW = scannerForAddingBMW.nextInt();
 
-                    cars.add(new BMW(typeName, modelName, brandName, colorName, speed));
+                    cars.add(new BMW(typeNameBMW, modelNameBMW, "BMW", colorNameBMW, speedBMW));
                     break;
 
                 case 2:
+
+                    System.out.println("Please write type of the car:");
+                    String typeNameMercedes = scannerForAddingMercedes.nextLine();
+
+                    System.out.println("Please write model of the car:");
+                    String modelNameMercedes = scannerForAddingMercedes.nextLine();
+
+                    System.out.println("Please write color of the car:");
+                    String colorNameMercedes = scannerForAddingMercedes.nextLine();
+
+                    System.out.println("Please write speed of the car:");
+                    int speedMercedes = scannerForAddingMercedes.nextInt();
+
+                    cars.add(new Mercedes(typeNameMercedes, modelNameMercedes, "Mercedes", colorNameMercedes, speedMercedes));
+
+                    break;
+
+                case 3:
 
                     System.out.println("Please write number of object to remove:");
                     int choiceRemove = input.nextInt();
@@ -51,19 +68,19 @@ public class Main {
                     cars.remove(choiceRemove);
                     break;
 
-                case 3:
+                case 4:
 
                     cars.stream()
                             .forEach(System.out::print);
 
                     break;
 
-                case 4:
+                case 5:
 
                     Collections.sort(cars);
                     break;
 
-                case 5:
+                case 6:
 
                     System.out.println("Exiting Program...");
                     System.exit(0);
@@ -136,17 +153,13 @@ abstract class Car implements Vehicle, Alarm, Comparable<Car> {
                 ", brand='" + brand + '\'' +
                 ", color='" + color + '\'' +
                 ", speed=" + speed +
-                '}';
+                "} \n";
     }
 
     @Override
     public int compareTo(Car o) {
         int result;
-        if (this.speed > o.speed) {
-            result = 1;
-        } else {
-            result = 0;
-        }
+        result = this.brand.compareTo(o.brand);
         return result;
 
     }
